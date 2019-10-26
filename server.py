@@ -22,5 +22,16 @@ def home_page():
     return "<br/>".join(values)
 
 
+@app.route("/logo_test")
+def logo_page():
+    """
+    Page for testing whether serving static files through flask works correctly.
+    :return:
+    """
+    return """
+    <img src="static/logo.png" alt="Audiocasts Logo" height="200">
+    """
+
+
 if __name__ == "__main__":
     app.run()
