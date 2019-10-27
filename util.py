@@ -1,8 +1,6 @@
 import os
 import psycopg2 as db
 
-def get_db_url():
-    return os.getenv("DATABASE_URL");
 
 def fill_with_dummy_data(db_url):
     """

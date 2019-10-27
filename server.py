@@ -1,8 +1,9 @@
-from util import get_db_url, fill_with_dummy_data
-
 from flask import Flask
 
 import psycopg2 as db
+
+from . import DB_URI
+from util import fill_with_dummy_data
 
 
 app = Flask(__name__)
@@ -10,9 +11,9 @@ app = Flask(__name__)
 
 @app.route("/")
 def home_page():
-    fill_with_dummy_data(get_db_url())
+    fill_with_dummy_data()
 
-    with db.connect(get_db_url()) as conn:
+    with db.connect(DB_URI) as conn:
         cur = conn.cursor()
         cur.execute("SELECT * FROM DUMMY")
         values = cur.fetchall()
