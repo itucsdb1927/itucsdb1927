@@ -39,6 +39,16 @@ class User:
                 print(fetched)
                 return User(*fetched)
 
+    @classmethod
+    def from_username(cls, username):
+        table_name = "users"
+        with db.connect(DB_URI) as conn:
+            with conn.cursor() as cur:
+                cur.execute(f"SELECT * FROM {table_name} WHERE username=%s", (username,))
+                fetched = cur.fetchone()
+                print(fetched)
+                return User(*fetched)
+
     def save(self, id_=None):
         """Save to table. id_=None will update the same row if it is a new object, will create a new one."""
         raise NotImplemented()
