@@ -1,7 +1,14 @@
-This repository contains a template project for the Database Systems course
-of the Istanbul Technical University Computer Engineering Department.
-The project uses the Python language, the Flask web application framework,
-and the PostgreSQL database.
+Audiocasts
+----------
+
+![Logo](logo.png)
+
+An online database of spoken audio entertainment.
+Users will be able to browse and listen to podcasts and audiobooks in this web application.
+It will also serve as a social catalogue in which users can comment
+and vote the content they like or dislike,
+view other people’s opinions and choose their next favorite book/podcast accordingly.
+
 
 How to use this repository
 --------------------------
