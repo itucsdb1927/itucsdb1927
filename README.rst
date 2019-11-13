@@ -1,7 +1,7 @@
 Audiocasts
 ----------
 
-![Logo](logo.png)
+.. image:: ./logo.png
 
 An online database of spoken audio entertainment.
 Users will be able to browse and listen to podcasts and audiobooks in this web application.
