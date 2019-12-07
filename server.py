@@ -1,26 +1,14 @@
 from flask import Flask
 
-import psycopg2 as db
-
-from . import DB_URI
-from util import fill_with_dummy_data
-
+from routes.auth import auth_blueprint
 
 app = Flask(__name__)
+app.register_blueprint(auth_blueprint, url_prefix="/auth")
 
 
 @app.route("/")
 def home_page():
-    fill_with_dummy_data()
-
-    with db.connect(DB_URI) as conn:
-        cur = conn.cursor()
-        cur.execute("SELECT * FROM DUMMY")
-        values = cur.fetchall()
-        cur.close()
-
-    values = [str(v[0]) for v in values]
-    return "<br/>".join(values)
+    return "TODO: Implement"
 
 
 @app.route("/audio_test")
@@ -35,6 +23,7 @@ def audio_page():
         Your browser does not support the audio element.
     </audio>
     """
+
 
 @app.route("/logo_test")
 def logo_page():
