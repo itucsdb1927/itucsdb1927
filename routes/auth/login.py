@@ -16,4 +16,7 @@ from routes.auth._forms import LoginForm
 
 @auth_blueprint.route('/login', methods=['GET', 'POST'])
 def login():
-    return "IMPLEMENT: Login Page"
+    if user_logged_in():
+        return redirect("/")
+
+    return render_template("auth/temptest.html", **{'something': "We can now use templates"})
