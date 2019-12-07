@@ -1,8 +1,10 @@
 import os
 
-from flask import Flask
+from flask import Flask, session
 
 from routes.auth import auth_blueprint
+from user import User
+from util import user_logged_in
 
 app = Flask(__name__)
 app.config.update(
@@ -14,7 +16,17 @@ app.register_blueprint(auth_blueprint, url_prefix="/auth")
 
 @app.route("/")
 def home_page():
-    return "TODO: Implement"
+    user = None
+    if user_logged_in():
+        user = User.get_from_id(session['user_id'])
+
+    hello_string = "HELLO: "
+    if user is not None:
+        hello_string += user.first_name
+    else:
+        hello_string += "Stranger!"
+
+    return hello_string
 
 
 @app.route("/audio_test")

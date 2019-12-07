@@ -7,6 +7,7 @@ from flask import (
     url_for
 )
 
+from user import User
 from util import user_logged_in
 
 from routes.auth import auth_blueprint
@@ -22,6 +23,14 @@ def login():
     form = LoginForm()
 
     if form.validate_on_submit():
-        pass
+        try:
+            user = User.get_from_username(form.data['username'])
+            # todo: implement password hashing
+            if user.password == form.data['password']:
+                session['user_id'] = user.id_
+                print("You are logged in successfully")
+                return redirect("/")
+        except:
+            print("Error")
 
     return render_template("auth/login.html", form=form)
