@@ -19,4 +19,9 @@ def login():
     if user_logged_in():
         return redirect("/")
 
-    return render_template("auth/temptest.html", **{'something': "We can now use templates"})
+    form = LoginForm()
+
+    if form.validate_on_submit():
+        pass
+
+    return render_template("auth/login.html", form=form)

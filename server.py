@@ -1,8 +1,14 @@
+import os
+
 from flask import Flask
 
 from routes.auth import auth_blueprint
 
 app = Flask(__name__)
+app.config.update(
+    SECRET_KEY=os.urandom(32),
+    WTF_CSRF_SECRET_KEY=os.urandom(32),
+)
 app.register_blueprint(auth_blueprint, url_prefix="/auth")
 
 
@@ -37,4 +43,5 @@ def logo_page():
 
 
 if __name__ == "__main__":
+    app.config['SECRET_KEY'] = os.urandom(32)
     app.run()
