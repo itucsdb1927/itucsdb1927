@@ -4,9 +4,7 @@ from copy import deepcopy
 import inflection
 import psycopg2 as db
 
-# from .. import DB_URI
-
-DB_URI = "postgres://postgres:docker@localhost:5432/postgres"
+from proj_config import DB_URI
 
 @dataclass
 class BaseModel:
@@ -21,8 +19,12 @@ class BaseModel:
         self._original_values = deepcopy(self.__dict__)
 
     @classmethod
+    def _infer_table_name(cls):
+        return inflection.underscore(inflection.pluralize(cls.__name__))
+
+    @classmethod
     def get_from_id(cls, id_):
-        _infered_table_name = inflection.underscore(inflection.pluralize(cls.__name__))
+        _infered_table_name = cls._infer_table_name()
         with db.connect(DB_URI) as conn:
             with conn.cursor() as cur:
                 cur.execute(f"SELECT * FROM {_infered_table_name} WHERE id=%s", (id_,))

@@ -16,7 +16,7 @@ INIT_STATEMENTS = [
     """
     CREATE TABLE users (
         id serial NOT NULL,
-        creator int NOT NULL,
+        creator int NULL,
         image_file int NULL,
         username varchar(64) NOT NULL,
         email_address varchar(320) NOT NULL,
