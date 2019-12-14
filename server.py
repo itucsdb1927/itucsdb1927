@@ -1,6 +1,7 @@
 import os
 
 from flask import Flask, session
+from flask_bcrypt import Bcrypt
 
 from routes.auth import auth_blueprint
 from user import User
@@ -10,6 +11,7 @@ app = Flask(__name__)
 app.config.update(
     SECRET_KEY=os.urandom(32),
     WTF_CSRF_SECRET_KEY=os.urandom(32),
+    BCRYPT=Bcrypt(app)
 )
 app.register_blueprint(auth_blueprint, url_prefix="/auth")
 
