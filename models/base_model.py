@@ -18,6 +18,8 @@ class BaseModel:
         """
         self._original_values = deepcopy(self.__dict__)
 
+    # marking this as a class property may manipulate the internal __dict__ of the class
+    # better to just keep it as a method
     @classmethod
     def _infer_table_name(cls):
         return inflection.underscore(inflection.pluralize(cls.__name__))
@@ -41,7 +43,7 @@ class BaseModel:
                     self._update(cur)
 
     def _create(self, cur):
-        _infered_table_name = inflection.underscore(inflection.pluralize(self.__class__.__name__))
+        _infered_table_name = self._infer_table_name()
 
         initial_values = deepcopy(self.__dict__)
         initial_values.pop('id_')
@@ -64,7 +66,7 @@ class BaseModel:
         :param cur:
         :return:
         """
-        _infered_table_name = inflection.underscore(inflection.pluralize(self.__class__.__name__))
+        _infered_table_name = self._infer_table_name()
 
         diff = {}
         for key in list(self._original_values.keys()):

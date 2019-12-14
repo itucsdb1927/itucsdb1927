@@ -20,7 +20,7 @@ INIT_STATEMENTS = [
         image_file int NULL,
         username varchar(64) NOT NULL,
         email_address varchar(320) NOT NULL,
-        password varchar(53) NOT NULL,
+        password varchar(60) NOT NULL,
         first_name varchar(64) NOT NULL,
         last_name varchar(64) NOT NULL,
         is_admin boolean NOT NULL     
