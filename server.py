@@ -1,6 +1,6 @@
 import os
 
-from flask import Flask, session
+from flask import Flask, session, render_template
 from flask_bcrypt import Bcrypt
 
 from routes.auth import auth_blueprint
@@ -22,13 +22,8 @@ def home_page():
     if user_logged_in():
         user = User.get_from_id(session['user_id'])
 
-    hello_string = "HELLO: "
-    if user is not None:
-        hello_string += user.first_name
-    else:
-        hello_string += "Stranger!"
 
-    return hello_string
+    return render_template("root.html", user=user, page_title="Home")
 
 
 @app.route("/audio_test")
