@@ -9,8 +9,6 @@ from models.exceptions import NoEntryError
 
 @dataclass
 class User(BaseModel):
-    creator: int
-    image_file: int
     username: str
     email_address: str
     password: str

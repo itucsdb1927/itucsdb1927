@@ -7,83 +7,66 @@ import psycopg2 as dbapi2
 INIT_STATEMENTS = [
     'DROP TABLE IF EXISTS public.users CASCADE',
     'DROP TABLE IF EXISTS public.episodes CASCADE',
-    'DROP TABLE IF EXISTS public.creators CASCADE',
     'DROP TABLE IF EXISTS public.podcasts CASCADE',
-    'DROP TABLE IF EXISTS public.audio_files CASCADE',
-    'DROP TABLE IF EXISTS public.image_files CASCADE',
-    'DROP TABLE IF EXISTS public.episodes_creators CASCADE',
 
     """
-    CREATE TABLE users (
-        id serial NOT NULL,
-        creator int NULL,
-        image_file int NULL,
-        username varchar(64) NOT NULL,
-        email_address varchar(320) NOT NULL,
-        password varchar(60) NOT NULL,
-        first_name varchar(64) NOT NULL,
-        last_name varchar(64) NOT NULL,
-        is_admin boolean NOT NULL     
+    create table users
+    (
+        id            serial       not null
+            constraint users_pk
+                primary key,
+        username      varchar(64)  not null,
+        email_address varchar(320) not null,
+        password      varchar(60)  not null,
+        first_name    varchar(64)  not null,
+        last_name     varchar(64)  not null,
+        is_admin      boolean      not null
     );
     """,
 
     """
-    CREATE TABLE episodes (
-        id serial NOT NULL, 
-        image_file int NULL,
-        audio_file int NOT NULL,
-        podcast int NOT NULL,
-        title varchar(64) NOT NULL,
-        date timestamp NOT NULL, 
-        duration interval NOT NULL, 
-        summary text NOT NULL, 
-        episode_number int NOT NULL
+    create unique index users_username_uindex
+        on users (username);
+    """,
+
+    """
+    create unique index users_email_address_uindex
+        on users (email_address);
+    """,
+
+    """
+    create table podcasts
+    (
+        id           serial      not null
+            constraint podcasts_pk
+                primary key,
+        maintainer   integer
+            constraint podcasts_users_id_fk
+                references users
+                on update cascade on delete set null,
+        name         varchar(64) not null,
+        genre        varchar(32) not null,
+        description  text        not null,
+        website_url  text        not null,
+        date_created timestamp   not null
     );
     """,
 
     """
-    CREATE TABLE creators (
-        id serial NOT NULL, 
-        about text NOT NULL, 
-        website_url varchar(64) NULL, 
-        spotify_url varchar(64) NULL,
-        apple_pcasts_url varchar(64) NULL,
-        google_pcasts_url varchar(64) NULL
-    );
-    """,
-
-    """
-    CREATE TABLE podcasts (
-        id serial NOT NULL, 
-        episode int NOT NULL,
-        name varchar(64) NOT NULL, 
-        genre varchar(32) NOT NULL, 
-        description text NOT NULL, 
-        date_created timestamp NOT NULL
-    );
-    """,
-
-    """
-    CREATE TABLE audio_files (
-        id serial NOT NULL, 
-        is_local boolean NOT NULL, 
-        path varchar(128) NOT NULL
-    );
-    """,
-
-    """
-    CREATE TABLE image_files (
-        id serial NOT NULL, 
-        is_local boolean NOT NULL, 
-        path varchar(128) NOT NULL
-    );
-    """,
-
-    """
-    CREATE TABLE episodes_creators (
-        id serial NOT NULL, 
-        episode int NOT NULL, 
-        creator int NOT NULL 
+    create table episodes
+    (
+        id             serial      not null
+            constraint episodes_pk
+                primary key,
+        podcast        integer     not null
+            constraint episodes_podcasts_id_fk
+                references podcasts
+                on update cascade on delete cascade,
+        title          varchar(64) not null,
+        date           timestamp   not null,
+        duration       interval    not null,
+        summary        text        not null,
+        episode_number integer     not null
     );
     """,
 ]

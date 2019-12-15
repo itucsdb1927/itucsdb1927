@@ -28,8 +28,6 @@ def signup():
         # todo: flashing
         user = User(
             id_=None,
-            creator=None,
-            image_file=None,
             username=form.data['username'],
             email_address=form.data['email'],
             password=(
@@ -47,7 +45,7 @@ def signup():
             print("You have signed up and logged in successfully")
             return redirect("/")
         except:
-            # todo: sensible exceptions
+            # todo: use psycopg2.errors.UniqueViolation
             print("Error")
 
     return render_template("auth/signup.html", form=form, page_title="Sign Up ")

@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 from copy import deepcopy
+from typing import Optional
 
 import inflection
 import psycopg2 as db
@@ -10,7 +11,7 @@ from .exceptions import NoEntryError
 
 @dataclass
 class BaseModel:
-    id_: int        # IMPORTANT: None for new entry, otherwise use get_by_id.
+    id_: Optional[int]        # IMPORTANT: None for new entry, otherwise use get_by_id.
 
     def __post_init__(self):
         """
