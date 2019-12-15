@@ -5,6 +5,8 @@ import inflection
 import psycopg2 as db
 
 from proj_config import DB_URI
+from .exceptions import NoEntryError
+
 
 @dataclass
 class BaseModel:
@@ -31,7 +33,8 @@ class BaseModel:
             with conn.cursor() as cur:
                 cur.execute(f"SELECT * FROM {_infered_table_name} WHERE id=%s", (id_,))
                 fetched = cur.fetchone()
-                print(fetched)
+                if fetched is None:
+                    raise NoEntryError(f"No entry with the requested id = {id_}")
                 return cls(*fetched)
 
     def save(self):
