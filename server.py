@@ -4,7 +4,7 @@ from flask import Flask, session, render_template
 from flask_bcrypt import Bcrypt
 
 from routes.auth import auth_blueprint
-from user import User
+from models.user import User
 from util import user_logged_in
 
 app = Flask(__name__)

@@ -8,7 +8,7 @@ from flask import (
     current_app
 )
 
-from user import User
+from models.user import User
 from util import user_logged_in
 
 from routes.auth import auth_blueprint

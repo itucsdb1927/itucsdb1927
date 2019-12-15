@@ -1,6 +1,5 @@
 from dataclasses import dataclass
 
-import inflection
 import psycopg2 as db
 
 from proj_config import DB_URI
