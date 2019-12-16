@@ -18,7 +18,12 @@ def update(podcast_id):
     except:
         abort(404)
 
-    form = PodcastEditForm()
+    # initialize form with current values
+    form = PodcastEditForm(
+        genre=podcast.genre,
+        description=podcast.description,
+        website_url=podcast.website_url,
+    )
 
     if form.validate_on_submit():
         podcast.genre = form.data['genre']
@@ -31,5 +36,5 @@ def update(podcast_id):
             abort(500)
 
     return render_template(
-        "podcast/update.html", form=form, current=podcast, page_title="Create Podcast"
+        "podcast/update.html", form=form, current=podcast, page_title="Update Podcast"
     )
