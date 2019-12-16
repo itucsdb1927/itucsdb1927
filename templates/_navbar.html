@@ -1,15 +1,15 @@
 <nav class="navbar" role="navigation" aria-label=""main navigation>
 
   <div class="navbar-brand">
-    <a href="/" class="navbar-item" >
-      <img src="/logo.png" alt="Home Page" height="30" width="auto">
-    </a>
+      <a href="/" class="navbar-item">
+          Home
+      </a>
   </div>
 
   <div id="main-navbar" class="navbar-menu">
     <div class="navbar-start">
-      <a class="navbar-item">
-        Browse podcasts
+      <a href="/search" class="navbar-item">
+        Search
       </a>
     </div>
 
@@ -18,7 +18,7 @@
         <div class="navbar-item has-dropdown is-hoverable">
           <a href="/user/me" class="navbar-link">
             <span class="icon">
-              <i class="far fa-user"></i>
+              <i class="fas fa-user"></i>
             </span>
             <span>
               {{ user.first_name }}
@@ -41,10 +41,16 @@
         <div class="navbar-item">
           <div class="buttons">
             <a href="/auth/signup" class="button is-primary">
+              <span class="icon">
+                <i class="fas fa-user-plus"></i>
+              </span>
               <strong>Sign Up</strong>
             </a>
             <a href="/auth/login" class="button is-light">
-              Log In
+              <span class="icon">
+                <i class="fas fa-sign-in-alt"></i>
+              </span>
+              <span>Log In</span>
             </a>
           </div>
         </div>
