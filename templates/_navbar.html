@@ -17,12 +17,12 @@
       {% if user is not none %}
         <div class="navbar-item has-dropdown is-hoverable">
           <a href="/user/me" class="navbar-link">
-            {% if user.image_file is none %}
-              <span class="icon">
-                <i class="far fa-user"></i>
-              </span>
-            {% endif %}
-            {{ user.first_name }}
+            <span class="icon">
+              <i class="far fa-user"></i>
+            </span>
+            <span>
+              {{ user.first_name }}
+            </span>
           </a>
           <div class="navbar-dropdown">
             <a href="/auth/logout" class="navbar-item">
