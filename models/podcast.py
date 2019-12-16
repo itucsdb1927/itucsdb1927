@@ -9,7 +9,7 @@ from models.user import User
 
 
 @dataclass
-class Podcasts(BaseModel):
+class Podcast(BaseModel):
     maintainer: int
     name: str
     genre: str
