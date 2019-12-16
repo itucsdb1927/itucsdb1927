@@ -1,0 +1,39 @@
+{% extends "_base_form.html" %}
+
+{% block form_area %}
+  <h1 class="title">Create Episode</h1>
+  <div class="container">
+    <form action="/episode/create?podcast_id={{ podcast_id }}" method="post">
+      {{ form.hidden_tag() }}
+      <div class="field">
+        <label for="{{ form.title.id }}" class="label">{{ form.title.label }}</label>
+        <div class="control">
+          {{ form.title(class="input") }}
+        </div>
+      </div>
+      <div class="field">
+        <label for="{{ form.duration.id }}" class="label">{{ form.duration.label }}</label>
+        <div class="control">
+          {{ form.duration(class="input") }}
+        </div>
+      </div>
+      <div class="field">
+        <label for="{{ form.summary.id }}" class="label">{{ form.summary.label }}</label>
+        <div class="control">
+          {{ form.summary(class="textarea") }}
+        </div>
+      </div>
+      <div class="field">
+        <label for="{{ form.episode_number.id }}" class="label">{{ form.episode_number.label }}</label>
+        <div class="control">
+          {{ form.episode_number(class="input") }}
+        </div>
+      </div>
+      <div class="field">
+        <div class="control">
+          {{ form.submit(class="button is-primary") }}
+        </div>
+      </div>
+    </form>
+  </div>
+{% endblock %}
