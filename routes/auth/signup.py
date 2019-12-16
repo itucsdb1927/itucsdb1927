@@ -1,11 +1,6 @@
 from datetime import datetime
 
-from flask import (
-    session,
-    render_template,
-    redirect,
-    current_app
-)
+from flask import session, render_template, redirect, current_app
 
 from flask_bcrypt import Bcrypt
 
@@ -37,7 +32,7 @@ def signup():
             ),
             first_name=form.data['first_name'],
             last_name=form.data['last_name'],
-            is_admin=False
+            is_admin=False,
         )
         try:
             user.save()

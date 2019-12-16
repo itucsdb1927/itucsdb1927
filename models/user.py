@@ -21,8 +21,13 @@ class User(BaseModel):
         _infered_table_name = cls._infer_table_name()
         with db.connect(DB_URI) as conn:
             with conn.cursor() as cur:
-                cur.execute(f"SELECT * FROM {_infered_table_name} WHERE username=%s", (username,))
+                cur.execute(
+                    f"SELECT * FROM {_infered_table_name} WHERE username=%s",
+                    (username,),
+                )
                 fetched = cur.fetchone()
                 if fetched is None:
-                    raise NoEntryError(f"No entry with the requested username = {username}")
+                    raise NoEntryError(
+                        f"No entry with the requested username = {username}"
+                    )
                 return cls(*fetched)

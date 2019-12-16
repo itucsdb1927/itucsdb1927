@@ -11,13 +11,10 @@ from util import user_logged_in
 
 app = Flask(__name__)
 app.config.update(
-    SECRET_KEY=os.urandom(32),
-    WTF_CSRF_SECRET_KEY=os.urandom(32),
-    BCRYPT=Bcrypt(app)
+    SECRET_KEY=os.urandom(32), WTF_CSRF_SECRET_KEY=os.urandom(32), BCRYPT=Bcrypt(app)
 )
 app.register_blueprint(root_blueprint, url_prefix='/')
 app.register_blueprint(auth_blueprint, url_prefix="/auth")
-
 
 
 if __name__ == "__main__":

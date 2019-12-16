@@ -1,9 +1,4 @@
-from flask import (
-    session,
-    render_template,
-    redirect,
-    current_app
-)
+from flask import session, render_template, redirect, current_app
 
 from models.user import User
 from util import user_logged_in

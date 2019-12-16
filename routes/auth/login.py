@@ -1,12 +1,6 @@
 from datetime import datetime
 
-from flask import (
-    session,
-    render_template,
-    redirect,
-    url_for,
-    current_app
-)
+from flask import session, render_template, redirect, url_for, current_app
 
 from models.user import User
 from util import user_logged_in

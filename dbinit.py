@@ -8,7 +8,6 @@ INIT_STATEMENTS = [
     'DROP TABLE IF EXISTS public.users CASCADE',
     'DROP TABLE IF EXISTS public.episodes CASCADE',
     'DROP TABLE IF EXISTS public.podcasts CASCADE',
-
     """
     create table users
     (
@@ -23,17 +22,14 @@ INIT_STATEMENTS = [
         is_admin      boolean      not null
     );
     """,
-
     """
     create unique index users_username_uindex
         on users (username);
     """,
-
     """
     create unique index users_email_address_uindex
         on users (email_address);
     """,
-
     """
     create table podcasts
     (
@@ -51,7 +47,6 @@ INIT_STATEMENTS = [
         date_created timestamp   not null
     );
     """,
-
     """
     create table episodes
     (

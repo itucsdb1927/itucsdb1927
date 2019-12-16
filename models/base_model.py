@@ -11,7 +11,7 @@ from .exceptions import NoEntryError
 
 @dataclass
 class BaseModel:
-    id_: Optional[int]        # IMPORTANT: None for new entry, otherwise use get_by_id.
+    id_: Optional[int]  # IMPORTANT: None for new entry, otherwise use get_by_id.
 
     def __post_init__(self):
         """
@@ -53,14 +53,16 @@ class BaseModel:
         initial_values.pop('id_')
         initial_values.pop('_original_values')
 
-        _columns_string = "(" + ", ".join([column for column in list(initial_values.keys())]) + ")"
+        _columns_string = (
+            "(" + ", ".join([column for column in list(initial_values.keys())]) + ")"
+        )
         _values_string = f"({', '.join(['%s', ] * len(initial_values))})"
         cur.execute(
             f"INSERT INTO {_infered_table_name} "
             f"{_columns_string} "
             f"VALUES {_values_string} "
             "RETURNING id",
-            tuple(list(initial_values.values()))
+            tuple(list(initial_values.values())),
         )
         self.id_ = cur.fetchone()[0]
 
@@ -77,14 +79,14 @@ class BaseModel:
             if self.__dict__[key] != self._original_values[key]:
                 diff[key] = self.__dict__[key]
 
-        set_string = ", ".join([f"{i if i != 'id_' else 'id'} = %s" for i in diff.keys()])
-        values = tuple(list(diff.values()) + [self.id_, ])
+        set_string = ", ".join(
+            [f"{i if i != 'id_' else 'id'} = %s" for i in diff.keys()]
+        )
+        values = tuple(list(diff.values()) + [self.id_,])
 
         cur.execute(
-            f"UPDATE {_infered_table_name} "
-            f"SET {set_string} "
-            f"WHERE id = %s",
-            values
+            f"UPDATE {_infered_table_name} " f"SET {set_string} " f"WHERE id = %s",
+            values,
         )
 
     # todo: delete

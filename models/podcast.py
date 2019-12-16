@@ -23,7 +23,10 @@ class Podcasts(BaseModel):
         pattern = f"%{string.strip()}%"
         with db.connect(DB_URI) as conn:
             with conn.cursor() as cur:
-                cur.execute(f"SELECT * FROM {_infered_table_name} WHERE name ILIKE %s", (pattern,))
+                cur.execute(
+                    f"SELECT * FROM {_infered_table_name} WHERE name ILIKE %s",
+                    (pattern,),
+                )
                 for row in cur:
                     yield cls(*row)
                 return
