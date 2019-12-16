@@ -1,0 +1,79 @@
+{% extends "_base.html" %}
+
+{% include "_navbar.html" %}
+{% block content %}
+  <section class="hero is-medium is-info is-bold">
+    <div class="hero-body">
+      <div class="container is-fluid">
+        <div class="columns">
+          <div class="column">
+            <h1 class="title">
+              {{ podcast.name }}
+            </h1>
+            <div class="columns">
+              <div class="column is-narrow">
+                <span class="icon">
+                  <i class="fas fa-user"></i>
+                </span>
+              </div>
+              <div class="column">
+                <a href="/user/{{ maintainer.username }}" class="has-text-white">
+                  <span>{{ maintainer.username }}</span>
+                </a>
+              </div>
+            </div>
+            <div class="columns">
+              <div class="column is-narrow">
+                <span class="icon">
+                  <i class="fas fa-info"></i>
+                </span>
+              </div>
+              <div class="column">
+                <span>{{ podcast.description }}</span>
+              </div>
+            </div>
+            <div class="columns">
+              <div class="column is-narrow">
+                <span class="icon">
+                  <i class="fas fa-bookmark"></i>
+                </span>
+              </div>
+              <div class="column">
+                <span>{{ podcast.genre }}</span>
+              </div>
+            </div>
+            <div class="columns">
+              <div class="column is-narrow">
+                <span class="icon">
+                  <i class="fas fa-globe"></i>
+                </span>
+              </div>
+              <div class="column">
+                <a href="{{ podcast.website_url }}" class="has-text-white">
+                  <span>{{ podcast.website_url }}</span>
+                </a>
+              </div>
+            </div>
+          </div>
+          {% if has_edit_perm %}
+            <div class="column is-one-fifth">
+              <div class="buttons">
+                <a href="/podcast/{{ podcast.id_ }}/update" class="button is-warning">
+                  <span>Update podcast</span>
+                </a>
+                <a href="/podcast/{{ podcast.id_ }}/delete" class="button is-danger">
+                  <span>Delete podcast</span>
+                </a>
+              </div>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <h1 class="title">Episodes</h1>
+    </div>
+  </section>
+{% endblock %}

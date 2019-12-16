@@ -16,7 +16,7 @@
     <div class="navbar-end">
       {% if user is not none %}
         <div class="navbar-item has-dropdown is-hoverable">
-          <a href="/user/me" class="navbar-link">
+          <a href="/user/{{ user.username }}" class="navbar-link">
             <span class="icon">
               <i class="fas fa-user"></i>
             </span>
