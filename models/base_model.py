@@ -89,6 +89,15 @@ class BaseModel:
             values,
         )
 
-    # todo: delete
+    def delete(self):
+        if self.id_ is None:
+            return
 
-    # todo: referenced joins
+        _infered_table_name = self._infer_table_name()
+
+        with db.connect(DB_URI) as conn:
+            with conn.cursor() as cur:
+                cur.execute(
+                    f"DELETE FROM {_infered_table_name} WHERE id = %s", (self.id_,)
+                )
+                self.id_ = None
