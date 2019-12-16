@@ -20,7 +20,9 @@ def view(podcast_id):
     if user_logged_in():
         user = User.get_from_id(session['user_id'])
 
-    has_edit_perm = (user is not None) and (user.is_admin or (user.id_ == podcast.maintainer))
+    has_edit_perm = (user is not None) and (
+        user.is_admin or (user.id_ == podcast.maintainer)
+    )
 
     return render_template(
         "podcast/view.html",
