@@ -20,10 +20,10 @@ class PodcastCreateForm(FlaskForm):
     submit = SubmitField('Create')
 
 
-class PodcastEditForm(FlaskForm):
+class PodcastUpdateForm(FlaskForm):
     genre = StringField(
         'Genre', validators=[validators.DataRequired(), validators.length(max=32)],
     )
     description = TextAreaField('Description', validators=[validators.DataRequired()])
     website_url = StringField('Website', validators=[validators.DataRequired()])
-    submit = SubmitField('Create')
+    submit = SubmitField('Update')

@@ -3,7 +3,7 @@ from flask import redirect, session, render_template, abort
 from routes.podcast import podcast_blueprint
 
 from models.podcast import Podcast
-from routes.podcast._forms import PodcastEditForm
+from routes.podcast._forms import PodcastUpdateForm
 
 from util import user_logged_in
 
@@ -19,7 +19,7 @@ def update(podcast_id):
         abort(404)
 
     # initialize form with current values
-    form = PodcastEditForm(
+    form = PodcastUpdateForm(
         genre=podcast.genre,
         description=podcast.description,
         website_url=podcast.website_url,
