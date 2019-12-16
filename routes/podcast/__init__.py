@@ -2,4 +2,4 @@ from flask import Blueprint
 
 podcast_blueprint = Blueprint('podcast', __name__)
 
-from . import create, view, update
+from . import create, view, update, delete
