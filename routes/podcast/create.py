@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from flask import redirect, session, render_template
+from flask import redirect, session, render_template, abort
 
 from routes.podcast import podcast_blueprint
 from routes.podcast._forms import PodcastCreateForm
@@ -29,10 +29,9 @@ def create():
         )
         try:
             podcast.save()
+            return redirect(f"/podcast/{podcast.id_}")
         except:
-            pass
-        # todo: change to podcast view
-        return redirect("/")
+            abort(500)
 
     return render_template(
         "podcast/create.html", form=form, page_title="Create Podcast"
