@@ -79,6 +79,9 @@ class BaseModel:
             if self.__dict__[key] != self._original_values[key]:
                 diff[key] = self.__dict__[key]
 
+        if not diff:
+            return
+
         set_string = ", ".join(
             [f"{i if i != 'id_' else 'id'} = %s" for i in diff.keys()]
         )
