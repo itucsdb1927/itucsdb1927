@@ -1,61 +1,61 @@
 <nav class="navbar" role="navigation" aria-label=""main navigation>
-
-  <div class="navbar-brand">
-      <a href="/" class="navbar-item">
-          Home
-      </a>
-  </div>
-
-  <div id="main-navbar" class="navbar-menu">
-    <div class="navbar-start">
-      <a href="/search" class="navbar-item">
-        Search
-      </a>
+  <div class="container">
+    <div class="navbar-brand">
+        <a href="/" class="navbar-item">
+            Home
+        </a>
     </div>
 
-    <div class="navbar-end">
-      {% if user is not none %}
-        <div class="navbar-item has-dropdown is-hoverable">
-          <a href="/user/{{ user.username }}" class="navbar-link">
-            <span class="icon">
-              <i class="fas fa-user"></i>
-            </span>
-            <span>
-              {{ user.first_name }}
-            </span>
-          </a>
-          <div class="navbar-dropdown">
-            <a href="/auth/logout" class="navbar-item">
-              Log Out
-            </a>
-          </div>
-        </div>
-        <div class="navbar-item">
-          <div class="buttons">
-            <a href="/podcast/create" class="button is-primary">
-              <strong>Create Podcast</strong>
-            </a>
-          </div>
-        </div>
-      {% else %}
-        <div class="navbar-item">
-          <div class="buttons">
-            <a href="/auth/signup" class="button is-primary">
+    <div id="main-navbar" class="navbar-menu">
+      <div class="navbar-start">
+        <a href="/search" class="navbar-item">
+          Search
+        </a>
+      </div>
+
+      <div class="navbar-end">
+        {% if user is not none %}
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a href="/user/{{ user.username }}" class="navbar-link">
               <span class="icon">
-                <i class="fas fa-user-plus"></i>
+                <i class="fas fa-user"></i>
               </span>
-              <strong>Sign Up</strong>
-            </a>
-            <a href="/auth/login" class="button is-light">
-              <span class="icon">
-                <i class="fas fa-sign-in-alt"></i>
+              <span>
+                {{ user.first_name }}
               </span>
-              <span>Log In</span>
             </a>
+            <div class="navbar-dropdown">
+              <a href="/auth/logout" class="navbar-item">
+                Log Out
+              </a>
+            </div>
           </div>
-        </div>
-      {% endif %}
+          <div class="navbar-item">
+            <div class="buttons">
+              <a href="/podcast/create" class="button is-primary">
+                <strong>Create Podcast</strong>
+              </a>
+            </div>
+          </div>
+        {% else %}
+          <div class="navbar-item">
+            <div class="buttons">
+              <a href="/auth/signup" class="button is-primary">
+                <span class="icon">
+                  <i class="fas fa-user-plus"></i>
+                </span>
+                <strong>Sign Up</strong>
+              </a>
+              <a href="/auth/login" class="button is-light">
+                <span class="icon">
+                  <i class="fas fa-sign-in-alt"></i>
+                </span>
+                <span>Log In</span>
+              </a>
+            </div>
+          </div>
+        {% endif %}
+      </div>
     </div>
   </div>
-
 </nav>

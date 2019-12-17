@@ -22,4 +22,4 @@ class EpisodeForm(FlaskForm):
         'Episode number',
         validators=[validators.DataRequired(), validators.NumberRange(min=0)],
     )
-    submit = SubmitField('Create')
+    submit = SubmitField('Submit')

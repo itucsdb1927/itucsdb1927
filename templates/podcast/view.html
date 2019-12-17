@@ -59,10 +59,22 @@
             <div class="column is-one-fifth">
               <div class="buttons">
                 <a href="/podcast/{{ podcast.id_ }}/update" class="button is-warning">
-                  <span>Update podcast</span>
+                  <span class="icon">
+                    <i class="fas fa-pen"></i>
+                  </span>
+                  <span>Update Podcast</span>
                 </a>
                 <a href="/podcast/{{ podcast.id_ }}/delete" class="button is-danger">
-                  <span>Delete podcast</span>
+                  <span class="icon">
+                    <i class="fas fa-trash"></i>
+                  </span>
+                  <span>Delete Podcast</span>
+                </a>
+                <a href="/episode/create?podcast_id={{ podcast.id_ }}" class="button is-primary">
+                  <span class="icon">
+                    <i class="fas fa-plus"></i>
+                  </span>
+                  <span>Add Episode</span>
                 </a>
               </div>
             </div>
@@ -74,6 +86,51 @@
   <section class="section">
     <div class="container">
       <h1 class="title">Episodes</h1>
+      <div class="columns is-centered">
+        {% for episode in episodes %}
+          <div class="column is-one-thirds">
+            <article class="media">
+              <div class="media-content">
+                <div class="content">
+                  <h3 class="subtitle">
+                    #{{ episode.episode_number }} | {{ episode.title }}
+                  </h3>
+                  <span class="icon">
+                    <i class="fas fa-hourglass"></i>
+                  </span>
+                  <span>
+                    {{ episode.duration }}
+                  </span>
+                  <br>
+                  <span class="icon">
+                    <i class="fas fa-info"></i>
+                  </span>
+                  <span>
+                    {{ episode.summary }}
+                  </span>
+                  <br>
+                </div>
+                {% if has_edit_perm %}
+                  <nav class="level is-mobile">
+                    <div class="level-left">
+                      <a href="/episode/{{ episode.id_ }}/update" class="level-item">
+                        <span class="icon is-warning">
+                          <i class="fas fa-pen"></i>
+                        </span>
+                      </a>
+                      <a href="/episode/{{ episode.id_ }}/delete" class="level-item">
+                        <span class="icon is-danger">
+                          <i class="fas fa-trash"></i>
+                        </span>
+                      </a>
+                    </div>
+                  </nav>
+                {% endif %}
+              </div>
+            </article>
+          </div>
+        {% endfor %}
+      </div>
     </div>
   </section>
 {% endblock %}

@@ -28,6 +28,7 @@ def view(podcast_id):
         "podcast/view.html",
         user=user,
         podcast=podcast,
+        episodes=podcast.episodes,
         maintainer=podcast.get_maintainer(),
         has_edit_perm=has_edit_perm,
         page_title=podcast.name,
