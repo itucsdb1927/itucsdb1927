@@ -24,3 +24,9 @@ class SignUpForm(FlaskForm):
     )
     password = PasswordField('Password', validators=[validators.DataRequired(),])
     submit = SubmitField('Sign Up')
+
+
+class ChangePasswordForm(FlaskForm):
+    old = PasswordField('Old Password', validators=[validators.DataRequired()])
+    new = PasswordField('New Password', validators=[validators.DataRequired()])
+    submit = SubmitField('Change')
