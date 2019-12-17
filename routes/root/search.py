@@ -18,4 +18,6 @@ def search():
 
     results = Podcast.search(q) if q else []
 
-    return render_template("root/search.html", user=user, q=q, results=results, page_title="Search")
+    return render_template(
+        "root/search.html", user=user, q=q, results=results, page_title="Search"
+    )

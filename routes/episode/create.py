@@ -2,6 +2,7 @@ from datetime import datetime, timedelta
 
 from flask import redirect, session, render_template, abort, request
 
+from models.user import User
 from routes.episode import episode_blueprint
 from routes.episode._forms import EpisodeForm
 
@@ -16,6 +17,8 @@ def create():
     if not user_logged_in():
         abort(401)
 
+    user = User.get_from_id(session['user_id'])
+
     # retrieve podcast id
     args = request.args.to_dict()
     podcast_id = args.get("podcast_id", None)
@@ -29,7 +32,11 @@ def create():
     except:
         abort(404)
 
-    # todo: check user permissions
+    has_perm = (user is not None) and (
+        user.is_admin or (user.id_ == podcast.maintainer)
+    )
+    if not has_perm:
+        abort(403)
 
     form = EpisodeForm()
 
@@ -41,7 +48,7 @@ def create():
             date=datetime.now(),
             duration=timedelta(minutes=form.data['duration']),
             summary=form.data['summary'],
-            episode_number=form.data['episode_number']
+            episode_number=form.data['episode_number'],
         )
         try:
             episode.save()
@@ -50,5 +57,8 @@ def create():
             abort(500)
 
     return render_template(
-        "episode/create.html", form=form, podcast_id=podcast_id, page_title="Create Episode"
+        "episode/create.html",
+        form=form,
+        podcast_id=podcast_id,
+        page_title="Create Episode",
     )

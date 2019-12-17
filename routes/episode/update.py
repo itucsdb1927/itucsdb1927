@@ -1,7 +1,8 @@
 from datetime import timedelta
 
-from flask import redirect, abort, render_template
+from flask import redirect, abort, render_template, session
 
+from models.user import User
 from routes.episode import episode_blueprint
 from routes.episode._forms import EpisodeForm
 
@@ -12,7 +13,10 @@ from util import user_logged_in
 
 @episode_blueprint.route("/<int:episode_id>/update", methods=['GET', 'POST'])
 def update(episode_id):
-    # todo: add permission check
+    if not user_logged_in():
+        abort(401)
+
+    user = User.get_from_id(session['user_id'])
 
     episode = None
     try:
@@ -20,12 +24,18 @@ def update(episode_id):
     except:
         abort(404)
 
+    has_perm = (user is not None) and (
+        user.is_admin or (user.id_ == episode.get_podcast().maintainer)
+    )
+    if not has_perm:
+        abort(403)
+
     # initialize form with current values
     form = EpisodeForm(
         title=episode.title,
         duration=episode.minutes,
         summary=episode.summary,
-        episode_number=episode.episode_number
+        episode_number=episode.episode_number,
     )
 
     if form.validate_on_submit():

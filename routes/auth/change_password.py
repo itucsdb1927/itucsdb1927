@@ -22,10 +22,8 @@ def change_password():
             user = User.get_from_id(session['user_id'])
             bcrypt = current_app.config['BCRYPT']
             if bcrypt.check_password_hash(user.password, form.data['old']):
-                user.password = (
-                    bcrypt
-                    .generate_password_hash(form.data['new'])
-                    .decode('utf-8')
+                user.password = bcrypt.generate_password_hash(form.data['new']).decode(
+                    'utf-8'
                 )
                 user.save()
                 return redirect("/")
