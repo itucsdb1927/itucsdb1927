@@ -13,7 +13,7 @@ from util import user_logged_in
 @podcast_blueprint.route("/create", methods=['GET', 'POST'])
 def create():
     if not user_logged_in():
-        return redirect("/")
+        return abort(401)
 
     form = PodcastCreateForm()
 
