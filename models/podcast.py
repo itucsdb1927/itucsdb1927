@@ -24,6 +24,11 @@ class Podcast(BaseModel):
 
     @classmethod
     def search(cls, string):
+        """
+        Simple, case-insensitive search for podcasts.
+        :param string: search string
+        :return: list of Podcasts
+        """
         _infered_table_name = cls._infer_table_name()
         pattern = f"%{string.strip()}%"
         with db.connect(DB_URI) as conn:

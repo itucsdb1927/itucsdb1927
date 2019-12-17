@@ -19,8 +19,6 @@ def signup():
     form = SignUpForm()
 
     if form.validate_on_submit():
-        # todo: check if user already exists
-        # todo: flashing
         user = User(
             id_=None,
             username=form.data['username'],
@@ -40,7 +38,6 @@ def signup():
             print("You have signed up and logged in successfully")
             return redirect("/")
         except:
-            # todo: use psycopg2.errors.UniqueViolation
             print("Error")
 
     return render_template("auth/signup.html", form=form, page_title="Sign Up ")

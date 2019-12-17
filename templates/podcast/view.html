@@ -86,8 +86,8 @@
   <section class="section">
     <div class="container">
       <h1 class="title">Episodes</h1>
-      <div class="columns is-centered">
-        {% for episode in episodes %}
+      {% for episode in episodes %}
+        <div class="columns is-centered">
           <div class="column is-one-thirds">
             <article class="media">
               <div class="media-content">
@@ -129,8 +129,8 @@
               </div>
             </article>
           </div>
-        {% endfor %}
-      </div>
+        </div>
+      {% endfor %}
     </div>
   </section>
 {% endblock %}
