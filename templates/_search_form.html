@@ -1,0 +1,17 @@
+<form action="/search" method="get">
+  <div class="field">
+    <div class="control has-icons-left">
+      <label>
+        <input name="q" type="text" class="input" placeholder="Search Podcasts" {% if q %}value="{{ q }}"{% endif %}>
+        <span class="icon is-left is-black">
+          <i class="fas fa-search"></i>
+        </span>
+      </label>
+    </div>
+  </div>
+  <div class="field">
+    <div class="control">
+      <input type="submit" class="button is-primary">
+    </div>
+  </div>
+</form>

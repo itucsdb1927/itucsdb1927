@@ -1,0 +1,37 @@
+{% extends "_base.html" %}
+
+{% block content %}
+  {% include "_navbar.html" %}
+  <section class="section">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-half">
+          <h1 class="title">Search</h1>
+          {% include "_search_form.html" %}
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-half">
+          {% if results %}
+            {% for result in results %}
+              <div class="notification is-link">
+                <a href="/podcast/{{ result.id_ }}" class="subtitle">
+                  {{ result.name }}
+                </a>
+                <h2 class="subtitle"></h2>
+              </div>
+            {% endfor %}
+          {% else %}
+            {% if q %}
+              <h2 class="subtitle">No results found.</h2>
+            {% endif %}
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}
