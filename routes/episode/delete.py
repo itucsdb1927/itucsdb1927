@@ -18,7 +18,8 @@ def delete(episode_id):
     try:
         episode = Episode.get_from_id(episode_id)
         has_perm = (user is not None) and (
-            user.is_admin or (user.id_ == Podcast.get_from_id(episode.podcast).maintainer)
+            user.is_admin
+            or (user.id_ == Podcast.get_from_id(episode.podcast).maintainer)
         )
         if not has_perm:
             abort(403)
