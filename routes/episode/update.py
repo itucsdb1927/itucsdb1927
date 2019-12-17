@@ -2,6 +2,7 @@ from datetime import timedelta
 
 from flask import redirect, abort, render_template, session
 
+from models.podcast import Podcast
 from models.user import User
 from routes.episode import episode_blueprint
 from routes.episode._forms import EpisodeForm
@@ -25,7 +26,7 @@ def update(episode_id):
         abort(404)
 
     has_perm = (user is not None) and (
-        user.is_admin or (user.id_ == episode.get_podcast().maintainer)
+        user.is_admin or (user.id_ == Podcast.get_from_id(episode.podcast).maintainer)
     )
     if not has_perm:
         abort(403)

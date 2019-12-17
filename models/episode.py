@@ -3,7 +3,6 @@ from datetime import datetime, timedelta
 
 import psycopg2 as db
 
-from models.podcast import Podcast
 from proj_config import DB_URI
 
 from models.base_model import BaseModel
@@ -36,6 +35,3 @@ class Episode(BaseModel):
                 if cur.rowcount <= 0:
                     return []
                 return [cls(*row) for row in cur]
-
-    def get_podcast(self):
-        return Podcast.get_from_id(self.podcast)
