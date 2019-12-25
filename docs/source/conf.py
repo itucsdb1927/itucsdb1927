@@ -20,8 +20,8 @@
 # -- Project information -----------------------------------------------------
 
 project = 'ITUCSDB1927'
-copyright = '2019, ITUCSDB1927, Mehveş Altay & Dilara İnan'
-author = 'ITUCSDB1927, Mehveş Altay & Dilara İnan'
+copyright = '2019, ITUCSDB1927, Mehveş Altay'
+author = 'ITUCSDB1927, Mehveş Altay'
 
 # The short X.Y version
 version = ''
