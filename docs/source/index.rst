@@ -7,7 +7,7 @@ Welcome to itucsdb1927's documentation!
 
    * Mehves Altay
    
-Audiocasts is a public podcast information database. Anyone can find podcasts by searching the title and the podcast information is provided by the community of registered users. 
+**Audiocasts is a public podcast information database. Anyone can find podcasts by searching the title and the podcast information is provided by the community of registered users.**
 
 Contents:
 
