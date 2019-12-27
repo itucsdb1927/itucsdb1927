@@ -1,31 +1,21 @@
 Developer Guide
 ===============
 
-Database Design
----------------
+Project Structure
+-----------------
 
-**explain the database design of your project**
+Audiocasts rely on the **MVP (Model, View, Template)** paradigm.
 
-**include the E/R diagram(s)**
+The `models` package contains the custom base model implementation
+and the models representing tables of the database.
 
-Code
-----
+The sub-packages under `routes` folder represents *Flask Blueprints*,
+and each module implements a view with the same name as the module.
 
-**explain the technical structure of your code**
+The `templates` folder contains the templates files. Folder structure
+and file names mirror the `routes` folder, apart from the base files
+extended by the other files, for clear structure and view-template pairing.
 
-**to include a code listing, use the following example**::
-
-   .. code-block:: python
-
-      class Foo:
-
-         def __init__(self, x):
-            self.x = x
-
-.. toctree::
-
-   member1
-   member2
-   member3
-   member4
-   member5
+Other top level modules not provided in the base module include `proj_config.py`,
+which fetches environment variables used for providing the database
+and the secret keys. These values are then used for Flask configuration in `server.py`.
