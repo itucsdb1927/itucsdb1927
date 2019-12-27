@@ -49,3 +49,14 @@ new entries in the table and the `save()` method will act as creation.
 Models initialized with the `get_from_id()` *classmethod* are treated as
 existing entries in the table and the `save()` method will act as update.
 Calling `delete()` on an existing entry model will delete the row from database. 
+
+
+BaseClass
+^^^^^^^^^
+
+.. py:class:: BaseClass(id_)
+
+   .. py:classmethod:: get_from_id(cls, id_):
+      Fetch existing row as model
+      :raises NoEntryError:
+
