@@ -24,9 +24,9 @@ copyright = '2019, ITUCSDB1927, Mehveş Altay'
 author = 'ITUCSDB1927, Mehveş Altay'
 
 # The short X.Y version
-version = ''
+version = '1.0'
 # The full version, including alpha/beta/rc tags
-release = ''
+release = '1.0-rc1'
 
 
 # -- General configuration ---------------------------------------------------
@@ -40,9 +40,7 @@ release = ''
 # ones.
 extensions = [
     'sphinx.ext.githubpages',
-    'rst2pdf.pdfbuilder',
 ]
-pdf_documents = [('index', u'rst2pdf', u'Audiocasts Docs', 'Mehves Altay')]
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
