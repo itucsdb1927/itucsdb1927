@@ -19,3 +19,8 @@ extended by the other files, for clear structure and view-template pairing.
 Other top level modules not provided in the base module include `proj_config.py`,
 which fetches environment variables used for providing the database
 and the secret keys. These values are then used for Flask configuration in `server.py`.
+
+.. toctree::
+
+   database_design
+   code
